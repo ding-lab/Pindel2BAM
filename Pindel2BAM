@@ -1,0 +1,36 @@
+#!/bin/bash
+
+TAB="$(printf '\t' )";
+
+curdir=(`pwd`)
+
+echo ""
+echo "Running Pindel2BAM"
+if [ ! -f pin2sam ]; then
+	echo "${TAB}Compiling the converter (pin2sam)."
+	make -f Makefile
+fi
+if [ $# -gt 0 ]; then
+	echo "${TAB}Running converter pin2sam"
+	./pin2sam $1 $2 $3 $4
+	echo ""
+	cd $2
+	files=(`ls`)
+	for i in ${files[@]}; do
+		echo "${TAB}${TAB}Converting SAM to BAM for $i"
+		samtools view -bS "$i" > "$i.bam"
+		echo "${TAB}${TAB}Sorting BAM"
+		samtools sort "$i.bam" "$i_sorted"
+		echo "${TAB}${TAB}Indexing BAM"
+		samtools index "$i_sorted.bam"
+		echo ""
+	done
+else
+	echo "Pindel2BAM_error: need four inputs"
+	echo "Pindel2BAM <pindel_data_directory> <output_directory> pindel_config_file pindel_reference_index_file"
+fi
+
+cd $curdir
+
+echo "${TAB}${TAB}${TAB}Pindel2BAM complete."
+echo ""
