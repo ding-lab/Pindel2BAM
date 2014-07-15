@@ -35,15 +35,15 @@ Currently, filler data exists for the following SAM fields:
 * RNEXT = *
 * PNEXT = 0
 * TLEN = 0
-* QUAL = *
+* QUAL = *  
 
+If the converter pin2sam has not been compiled, then Pindel2BAM will
+compile it automatically.  
 
-##TIPS
-* If the converter pin2sam has not been compiled, then Pindel2BAM will
-compile it automatically.
-* If your bam file names listed in the config file have a directory prefix,
-then the / will be turned into _ for the output file names.
-* If output files already exist, Pindel2SAM will append any data
+If your bam file names listed in the config file have a directory prefix,
+then the / will be turned into _ for the output file names.  
+
+If output files already exist, Pindel2SAM will append any data
 within the _D and _SI files to the existing output .sam files.
 You must therefore clean out the output directory before running
 if you want fresh conversions.
