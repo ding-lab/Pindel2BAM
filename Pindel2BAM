@@ -20,9 +20,9 @@ if [ $# -gt 0 ]; then
 		echo "${TAB}${TAB}Converting SAM to BAM for $i"
 		samtools view -bS "$i" > "$i.bam"
 		echo "${TAB}${TAB}Sorting BAM"
-		samtools sort "$i.bam" "$i_sorted"
+		samtools sort "$i.bam" "$i.sorted"
 		echo "${TAB}${TAB}Indexing BAM"
-		samtools index "$i_sorted.bam"
+		samtools index "$i.sorted.bam"
 		echo ""
 	done
 else
