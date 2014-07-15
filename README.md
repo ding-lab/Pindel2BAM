@@ -1,5 +1,5 @@
 #Pindel2BAM 
-Convert Pindel output into BAM format.  
+Convert [Pindel](https://github.com/ding-lab/pindel2) output into BAM format.  
 
 ##Compiling
 To convert from Pindel to BAM, first compile pindel2sam.cpp with the 
